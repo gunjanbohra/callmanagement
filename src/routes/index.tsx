@@ -37,13 +37,11 @@ export function AppRouter() {
         } />
 
         {/* Root route */}
-        <Route path="/" element={
-          isAuthenticated ? <Navigate to="/dashboard" replace /> : <Navigate to="/login" replace />
-        } />
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
         {/* Protected routes */}
         <Route element={<Layout />}>
-          <Route path="/dashboard" element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/dashboard" element={<Home />} />
           <Route path="/owner-dashboard" element={<PrivateRoute><OwnerDashboard /></PrivateRoute>} />
           <Route path="/calls" element={<PrivateRoute><CallManagement /></PrivateRoute>} />
           <Route path="/payment-details" element={<PrivateRoute><PaymentDetails /></PrivateRoute>} />
