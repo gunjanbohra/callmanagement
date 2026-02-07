@@ -1,18 +1,21 @@
 import { Outlet } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
+import { useState } from 'react';
 import { Sidebar } from './Sidebar';
 import { DashboardHeader } from './DashboardHeader';
+import { UpdatePasswordModal } from '@/components/Dashboard/UpdatePasswordModal';
 import { sidebarState } from '@/store/ui';
 
 export function Layout() {
   const isSidebarOpen = useRecoilValue(sidebarState);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
 
   const handleRefresh = () => {
     window.location.reload();
   };
 
   const handleUpdatePassword = () => {
-    console.log('Update password clicked');
+    setIsPasswordModalOpen(true);
   };
 
   return (
@@ -28,6 +31,10 @@ export function Layout() {
           <Outlet />
         </main>
       </div>
+      <UpdatePasswordModal
+        isOpen={isPasswordModalOpen}
+        onClose={() => setIsPasswordModalOpen(false)}
+      />
     </div>
   );
 }
